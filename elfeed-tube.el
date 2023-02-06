@@ -581,7 +581,7 @@ buffer."
                                               (elfeed-meta entry :caps))))
                                   (condition-case nil
                                       (read capstr)
-                                    ('error
+                                    (error
                                      (elfeed-tube-log
                                       'error "[Show][Captions] DB parse error: %S"
                                       (elfeed-meta entry :caps)))))))))
