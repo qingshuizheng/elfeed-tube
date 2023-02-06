@@ -118,6 +118,11 @@ this to nil to disable showing thumbnails, but customize
                  (const :tag "Medium thumbnails" medium)
                  (const :tag "Small thumbnails" small)))
 
+(defcustom elfeed-tube-one-caption-per-line nil
+  "Show one caption per line instead of putting them together."
+  :group 'elfeed-tube
+  :type 'boolean)
+
 (defcustom elfeed-tube-invidious-url nil
   "Invidious URL to use for retrieving data.
 
@@ -698,7 +703,9 @@ buffer."
                                            'keymap
                                            elfeed-tube-captions-map))
                              para)
-                     vspace)
+                     (if elfeed-tube-one-caption-per-line
+                         "\n"
+                       vspace))
                     (propertize "\n\n" 'hard t)))
                  finally (when-let* ((w shr-width)
                                      (fill-column w)
